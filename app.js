@@ -1,12 +1,12 @@
-const express = require('express') ;
-const app = express() ;
-const port = 3000 ;
-const morgan = require('morgan') ;
-const path = require('path') ;
-const bodyParser = require('body-parser') ;
-const mongoose = require('mongoose') ;
+const express = require ('express') ;
+const app = express () ;
+const port = 5500 ;
+const morgan = require ('morgan') ;
+const path = require ('path') ;
+const bodyParser = require ('body-parser') ;
+const mongoose = require ('mongoose') ;
 
-app.use(express.static('./public'));
+app.use(express.static(__dirname + "/verduleria/public"));
 
 const user ='usuariofit';
 const pasword = 'LLCJCfdA50aSwKAm';
@@ -22,10 +22,12 @@ mongoose.connect( uri ,
 
 app.set('view engine' , 'ejs' )
 
-//app.set('view', __dirname + /view)
+app.set('view', __dirname + '/view' )
 
-
+app.get('/' , (res,req)=>{
+    res.render('index',{message : 'ejs funcionando'})
+})
 
 app.listen(port,()=>{
-    console.log('servidor escuchando en' , port)
+    console.log('servidor escuchando en http://:localhost:')
 })
